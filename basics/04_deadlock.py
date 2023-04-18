@@ -1,5 +1,6 @@
-from threading import *
 import time
+from threading import *
+
 
 def thread_A(lock1, lock2):
     lock1.acquire()
