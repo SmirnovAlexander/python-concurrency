@@ -35,9 +35,7 @@ if __name__ == "__main__":
     threads = [0] * N_THREADS
 
     for i in range(N_THREADS):
-        threads[i] = threading.Thread(
-            target=counter.increment, args=(int(TARGET_SUM / N_THREADS),)
-        )
+        threads[i] = threading.Thread(target=counter.increment, args=(int(TARGET_SUM / N_THREADS),))
     logger.info("Threads created")
 
     for i in range(N_THREADS):
