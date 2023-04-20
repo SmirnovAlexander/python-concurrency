@@ -3,7 +3,7 @@ from threading import current_thread
 
 
 def thread_tasks(a, b, c, key1, key2):
-    print(f"{current_thread().getName()} received args: {a}, {b}, {c}, {key1}, {key2}")
+    print(f"{current_thread().name} received args: {a}, {b}, {c}, {key1}, {key2}")
 
 
 thread = threading.Thread(
