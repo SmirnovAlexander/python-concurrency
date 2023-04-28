@@ -1,6 +1,8 @@
 import asyncio
+from functools import lru_cache
 
 import uvicorn
+from async_lru import alru_cache
 from fastapi import FastAPI
 from loguru import logger
 from utils import run_uvicorn_loguru
@@ -8,11 +10,18 @@ from utils import run_uvicorn_loguru
 app = FastAPI()
 
 
+# @lru_cache
+# @alru_cache
+async def long_task():
+    await asyncio.sleep(3)
+    return {"Hello": "World"}
+
+
 @app.get("/")
+@alru_cache
 async def read_root():
     logger.info("Received request...")
-    await asyncio.sleep(10)
-    return {"Hello": "World"}
+    return await long_task()
 
 
 if __name__ == "__main__":
