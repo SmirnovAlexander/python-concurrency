@@ -2,7 +2,7 @@ import random
 import time
 from concurrent.futures import ThreadPoolExecutor
 from enum import Enum
-from threading import Barrier, RLock, Semaphore, Thread
+from threading import Barrier, Lock, Semaphore
 
 from utils import logger
 
@@ -22,7 +22,7 @@ class UberSeatingServer:
         self.requesters_cnt = {v.name: 0 for v in Party}
         self.current_car = {v.name: 0 for v in Party}
 
-        self.lock = RLock()
+        self.lock = Lock()
         self.barrier = Barrier(4)
         self.semaphores = {v.name: Semaphore(0) for v in Party}
 
